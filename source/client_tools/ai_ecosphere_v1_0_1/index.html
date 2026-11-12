@@ -1,0 +1,139 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#06111f">
+  <title>AI EcoSphere</title>
+  <link rel="stylesheet" href="styles.css?v=20260717-categories">
+</head>
+<body>
+  <main id="app" class="app-shell">
+    <section id="workspace" class="workspace" aria-label="AI EcoSphere interactive visual matrix">
+      <svg id="matrix" role="application" aria-label="Client-centred map of AI providers and products">
+        <defs>
+          <radialGradient id="clientGold" cx="36%" cy="30%" r="72%">
+            <stop offset="0%" stop-color="#fff6bd"/>
+            <stop offset="32%" stop-color="#f4cf64"/>
+            <stop offset="68%" stop-color="#c99324"/>
+            <stop offset="100%" stop-color="#69420b"/>
+          </radialGradient>
+          <radialGradient id="clientHalo" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#f8d977" stop-opacity="0.42"/>
+            <stop offset="70%" stop-color="#d7a93d" stop-opacity="0.12"/>
+            <stop offset="100%" stop-color="#d7a93d" stop-opacity="0"/>
+          </radialGradient>
+          <filter id="goldGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="10" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="blueGlow" x="-100%" y="-100%" width="300%" height="300%">
+            <feGaussianBlur stdDeviation="5" result="blur"/>
+            <feMerge><feMergeNode in="blur"/><feMergeNode in="SourceGraphic"/></feMerge>
+          </filter>
+          <filter id="softShadow" x="-80%" y="-80%" width="260%" height="260%">
+            <feDropShadow dx="0" dy="4" stdDeviation="5" flood-color="#000814" flood-opacity="0.72"/>
+          </filter>
+        </defs>
+        <g id="back-links"></g>
+        <g id="back-nodes"></g>
+        <g id="client-layer"></g>
+        <g id="front-links"></g>
+        <g id="front-nodes"></g>
+      </svg>
+
+      <div class="toolbar" role="toolbar" aria-label="View controls">
+        <button id="zoom-in" type="button" title="Zoom in" aria-label="Zoom in">+</button>
+        <button id="zoom-out" type="button" title="Zoom out" aria-label="Zoom out">−</button>
+        <button id="reset-view" type="button" title="Reset view" aria-label="Reset view">↺</button>
+        <button id="motion-toggle" type="button" title="Toggle ambient motion" aria-label="Toggle ambient motion">∿</button>
+        <button id="fullscreen" type="button" title="Full screen" aria-label="Enter full screen">⛶</button>
+      </div>
+
+      <button id="settings-toggle" class="settings-floating" type="button" aria-label="Open EcoSphere settings" title="EcoSphere settings">Settings</button>
+      <button id="warning-button" class="warning-button hidden" type="button" aria-label="Open data warnings" title="Data warnings">!</button>
+      <div id="empty-state" class="empty-state hidden" role="status">No ecosystem data loaded</div>
+      <div id="loading-state" class="loading-state" role="status">Loading AI EcoSphere…</div>
+      <div id="help-hint" class="help-hint">Drag to rotate · Wheel to zoom · Click to focus · Double-click for details</div>
+    </section>
+
+    <aside id="info-panel" class="info-panel" aria-live="polite" aria-hidden="true">
+      <button id="panel-close" class="panel-close" type="button" aria-label="Close information panel">×</button>
+      <div id="panel-content"></div>
+    </aside>
+
+    <aside id="settings-panel" class="settings-panel" aria-live="polite" aria-hidden="true">
+      <button id="settings-close" class="panel-close" type="button" aria-label="Close settings panel">×</button>
+      <div class="settings-content">
+        <p class="panel-kicker">EcoSphere</p>
+        <h2 class="settings-title">Settings</h2>
+        <section class="setting-group" aria-label="Idle view">
+          <h3>Idle View</h3>
+          <label>Idle zoom
+            <select id="setting-idle-zoom">
+              <option value="near">Near</option>
+              <option value="balanced">Balanced</option>
+              <option value="wide">Wide</option>
+            </select>
+          </label>
+          <label>View tilt
+            <select id="setting-view-tilt">
+              <option value="flat">Flat</option>
+              <option value="soft">Soft</option>
+              <option value="deep">Deep</option>
+            </select>
+          </label>
+        </section>
+        <section class="setting-group" aria-label="Layout">
+          <h3>Layout</h3>
+          <label>Layout spread
+            <select id="setting-layout-spread">
+              <option value="tight">Tight</option>
+              <option value="natural">Natural</option>
+              <option value="wide">Wide</option>
+            </select>
+          </label>
+          <label>Orbit breathing
+            <select id="setting-orbit-breathing">
+              <option value="off">Off</option>
+              <option value="subtle">Subtle</option>
+              <option value="noticeable">Noticeable</option>
+            </select>
+          </label>
+        </section>
+        <section class="setting-group" aria-label="Motion">
+          <h3>Motion</h3>
+          <label>Motion strength
+            <select id="setting-motion-strength">
+              <option value="calm">Calm</option>
+              <option value="normal">Normal</option>
+              <option value="alive">Alive</option>
+            </select>
+          </label>
+          <label>Idle speed
+            <select id="setting-idle-speed">
+              <option value="slow">Slow</option>
+              <option value="normal">Normal</option>
+              <option value="fast">Fast</option>
+            </select>
+          </label>
+        </section>
+        <div class="settings-actions">
+          <button id="settings-reset" class="ghost" type="button">Reset Settings</button>
+        </div>
+      </div>
+    </aside>
+  </main>
+
+  <dialog id="warning-dialog" class="warning-dialog">
+    <form method="dialog">
+      <button class="dialog-close" aria-label="Close warnings">×</button>
+      <h2>Data warnings</h2>
+      <ul id="warning-list"></ul>
+    </form>
+  </dialog>
+
+  <script src="data-loader.js?v=20260717-ecosphere-settings"></script>
+  <script src="app.js?v=20260717-ecosphere-settings"></script>
+</body>
+</html>

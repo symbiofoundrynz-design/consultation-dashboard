@@ -1,0 +1,266 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="color-scheme" content="dark light">
+  <title>Graphs &amp; Charts</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main-workspace">Skip to chart workspace</a>
+
+  <header class="app-header">
+    <div>
+      <p class="eyebrow">CCR Visual Workbench</p>
+      <h1>Graphs &amp; Charts</h1>
+    </div>
+    <div class="header-actions">
+      <button id="load-export-button" class="button secondary" type="button">Load Cdash Export</button>
+      <button id="use-sample-button" class="button secondary" type="button">Use Sample Data</button>
+      <input id="file-input" type="file" accept="application/json,.json" hidden>
+      <span id="app-version" class="version-badge">v1.0.0</span>
+    </div>
+  </header>
+
+  <section id="status-region" class="status-region" aria-live="polite" aria-atomic="true">
+    <div id="status-message">No dataset loaded.</div>
+    <button id="open-health-button" class="text-button" type="button" disabled>Data health</button>
+  </section>
+
+  <main id="main-workspace" class="workspace" tabindex="-1">
+    <aside class="builder-panel" aria-label="Chart configuration">
+      <div class="panel-heading">
+        <div>
+          <p class="eyebrow">Configure</p>
+          <h2>Chart builder</h2>
+        </div>
+        <button id="reset-chart-button" class="icon-button" type="button" title="Reset current chart" aria-label="Reset current chart">↺</button>
+      </div>
+
+      <div class="field-group">
+        <label for="preset-select">Starter preset</label>
+        <select id="preset-select" disabled>
+          <option value="">Choose a preset</option>
+        </select>
+        <p id="preset-help" class="field-help">Presets fill the controls and remain editable.</p>
+      </div>
+
+      <div class="field-group">
+        <label for="dataset-select">Dataset</label>
+        <select id="dataset-select" disabled></select>
+        <p id="dataset-help" class="field-help"></p>
+      </div>
+
+      <div class="field-grid two-column">
+        <div class="field-group">
+          <label for="measure-select">Measure</label>
+          <select id="measure-select" disabled></select>
+        </div>
+        <div class="field-group">
+          <label for="group-select">Group by</label>
+          <select id="group-select" disabled></select>
+        </div>
+      </div>
+      <p id="measure-help" class="field-help"></p>
+
+      <fieldset id="filter-fieldset" disabled>
+        <legend>Filter products</legend>
+
+        <div class="field-grid two-column">
+          <div class="field-group">
+            <label for="provider-filter">Provider</label>
+            <select id="provider-filter" multiple size="4" aria-describedby="multi-select-help"></select>
+          </div>
+          <div class="field-group">
+            <label for="category-filter">Category</label>
+            <select id="category-filter" multiple size="4" aria-describedby="multi-select-help"></select>
+          </div>
+        </div>
+        <p id="multi-select-help" class="field-help">Use Ctrl/Cmd or Shift to select multiple values. No selection means all.</p>
+
+        <div class="field-group">
+          <div class="label-row">
+            <label for="tag-search">Tags</label>
+            <div class="segmented" role="group" aria-label="Tag match mode">
+              <button id="tag-any-button" type="button" class="segment active" aria-pressed="true">Any</button>
+              <button id="tag-all-button" type="button" class="segment" aria-pressed="false">All</button>
+            </div>
+          </div>
+          <input id="tag-search" type="search" placeholder="Search tags">
+          <div id="selected-tag-chips" class="chip-row" aria-live="polite"></div>
+          <div id="tag-options" class="tag-options" role="listbox" aria-label="Available tags"></div>
+        </div>
+
+        <div class="field-group">
+          <div class="label-row">
+            <label for="product-search">Products</label>
+            <div class="inline-actions">
+              <button id="select-all-products" class="text-button" type="button">Select all</button>
+              <button id="clear-products" class="text-button" type="button">Clear</button>
+            </div>
+          </div>
+          <input id="product-search" type="search" placeholder="Search products">
+          <div id="product-checklist" class="product-checklist" role="group" aria-label="Product selection"></div>
+        </div>
+      </fieldset>
+
+      <div id="section-control" class="field-group hidden">
+        <label for="section-select">Capability section</label>
+        <select id="section-select"></select>
+      </div>
+
+      <div id="pricing-basis-control" class="field-group hidden">
+        <label for="pricing-basis-select">Comparable pricing basis</label>
+        <select id="pricing-basis-select"></select>
+        <p class="field-help">Only matching currency and billing basis records are compared.</p>
+      </div>
+
+      <div class="field-grid two-column">
+        <div class="field-group">
+          <label for="chart-type-select">Chart type</label>
+          <select id="chart-type-select" disabled></select>
+        </div>
+        <div class="field-group">
+          <label for="sort-select">Sort</label>
+          <select id="sort-select" disabled>
+            <option value="value-desc">Highest first</option>
+            <option value="value-asc">Lowest first</option>
+            <option value="label-asc">Label A–Z</option>
+            <option value="label-desc">Label Z–A</option>
+          </select>
+        </div>
+      </div>
+      <p id="chart-type-help" class="field-help"></p>
+
+      <div class="field-group">
+        <label for="chart-title">Chart title</label>
+        <input id="chart-title" type="text" maxlength="140" disabled>
+      </div>
+      <div class="field-group">
+        <label for="chart-subtitle">Subtitle</label>
+        <textarea id="chart-subtitle" rows="2" maxlength="240" disabled></textarea>
+      </div>
+
+      <div class="primary-actions">
+        <button id="build-chart-button" class="button primary" type="button" disabled>Build Chart</button>
+        <button id="save-config-button" class="button secondary" type="button" disabled>Save</button>
+      </div>
+
+      <details class="saved-panel">
+        <summary>Saved charts</summary>
+        <div class="field-group">
+          <label for="saved-config-select">Named configurations</label>
+          <select id="saved-config-select">
+            <option value="">No saved charts</option>
+          </select>
+        </div>
+        <div class="compact-actions">
+          <button id="load-config-button" class="button tertiary" type="button" disabled>Load</button>
+          <button id="duplicate-config-button" class="button tertiary" type="button" disabled>Duplicate</button>
+          <button id="rename-config-button" class="button tertiary" type="button" disabled>Rename</button>
+          <button id="delete-config-button" class="button danger" type="button" disabled>Delete</button>
+        </div>
+      </details>
+    </aside>
+
+    <section class="chart-panel" aria-label="Chart workspace">
+      <div class="chart-toolbar">
+        <div>
+          <p class="eyebrow">Preview</p>
+          <h2 id="workspace-title">Load data to begin</h2>
+        </div>
+        <div class="compact-actions">
+          <button id="export-png-button" class="button tertiary" type="button" disabled>PNG</button>
+          <button id="export-config-button" class="button tertiary" type="button" disabled>Config JSON</button>
+          <button id="import-config-button" class="button tertiary" type="button">Import Config</button>
+          <input id="config-file-input" type="file" accept="application/json,.json" hidden>
+          <button id="export-csv-button" class="button tertiary" type="button" disabled>Filtered CSV</button>
+        </div>
+      </div>
+
+      <div id="chart-message" class="empty-state">
+        <div class="empty-icon">▥</div>
+        <h3>Build a chart from Cdash data</h3>
+        <p>Use the sample fixture or load a current Cdash backup JSON. All processing stays in this browser.</p>
+      </div>
+      <div id="chart-canvas" class="chart-canvas" role="img" aria-label="Chart preview" hidden></div>
+      <div id="table-chart" class="table-chart" hidden></div>
+      <p id="chart-text-summary" class="sr-only" aria-live="polite"></p>
+
+      <div id="source-line" class="source-line" hidden></div>
+
+      <details id="evidence-drawer" class="evidence-drawer">
+        <summary>Evidence, exclusions and warnings</summary>
+        <div class="evidence-grid">
+          <section>
+            <h3>Interpretation</h3>
+            <p id="interpretation-text">No chart has been built.</p>
+            <h3>Derived measure</h3>
+            <p id="derived-rule">Not applicable.</p>
+          </section>
+          <section>
+            <h3>Warnings and exclusions</h3>
+            <ul id="warning-list" class="warning-list"></ul>
+          </section>
+        </div>
+        <div class="table-toolbar">
+          <div>
+            <label for="evidence-search">Search evidence</label>
+            <input id="evidence-search" type="search" placeholder="Filter rows">
+          </div>
+          <label class="toggle-label"><input id="technical-view-toggle" type="checkbox"> Technical fields</label>
+        </div>
+        <div id="evidence-table-wrap" class="table-wrap"></div>
+      </details>
+    </section>
+  </main>
+
+  <footer class="app-footer">
+    <div class="footer-actions">
+      <button id="clear-saved-button" class="text-button danger-text" type="button">Clear saved charts</button>
+      <button id="forget-data-button" class="text-button danger-text" type="button" disabled>Forget loaded data</button>
+    </div>
+    <p>Standalone local tool · No live database connection · No external chart service</p>
+  </footer>
+
+  <dialog id="start-dialog" class="start-dialog">
+    <form method="dialog">
+      <p class="eyebrow">Graphs &amp; Charts</p>
+      <h2>Choose a data source</h2>
+      <p>Use the sanitised sample to explore the tool, or load a current Cdash backup export.</p>
+      <div class="start-actions">
+        <button id="dialog-sample-button" class="button primary" type="button">Use Sample Data</button>
+        <button id="dialog-load-button" class="button secondary" type="button">Load Cdash Export</button>
+      </div>
+      <button id="dialog-restore-button" class="button tertiary hidden" type="button">Restore previous browser session</button>
+      <button id="dialog-close-button" class="text-button" value="cancel">Continue without data</button>
+    </form>
+  </dialog>
+
+  <dialog id="health-dialog" class="health-dialog">
+    <form method="dialog">
+      <div class="dialog-heading">
+        <div>
+          <p class="eyebrow">Import diagnostics</p>
+          <h2>Data health</h2>
+        </div>
+        <button class="icon-button" value="close" aria-label="Close data health">×</button>
+      </div>
+      <div id="health-summary" class="health-summary"></div>
+      <div id="health-details" class="health-details"></div>
+    </form>
+  </dialog>
+
+  <script src="vendor/echarts.min.js"></script>
+  <script src="fixtures/cdash-export-sample.js"></script>
+  <script src="js/core.js"></script>
+  <script src="js/data-adapter.js"></script>
+  <script src="js/dataset-registry.js"></script>
+  <script src="js/chart-builder.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/exporters.js"></script>
+  <script src="js/ui-controller.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

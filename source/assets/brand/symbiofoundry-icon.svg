@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 256 256" role="img" aria-labelledby="title desc">
+  <title id="title">SymbioFoundry icon</title>
+  <desc id="desc">Interlocking CC core icon for SymbioFoundry in steel, gold, and electric blue.</desc>
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0d0f"/>
+      <stop offset="0.45" stop-color="#4c5358"/>
+      <stop offset="1" stop-color="#141719"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffdc66"/>
+      <stop offset="0.5" stop-color="#c79320"/>
+      <stop offset="1" stop-color="#7c5b12"/>
+    </linearGradient>
+    <radialGradient id="blueCore" cx="50%" cy="48%" r="55%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.18" stop-color="#8ff5ff"/>
+      <stop offset="0.45" stop-color="#00a3ff"/>
+      <stop offset="1" stop-color="#004d9a"/>
+    </radialGradient>
+    <filter id="softBlue" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <circle cx="128" cy="128" r="112" fill="none" stroke="#1d2226" stroke-width="10"/>
+  <circle cx="128" cy="128" r="94" fill="none" stroke="#c79320" stroke-width="6" opacity="0.9"/>
+
+  <path d="M177 66
+           C130 28 61 56 49 115
+           C36 181 96 235 159 216"
+        fill="none" stroke="url(#steel)" stroke-width="39" stroke-linecap="round"/>
+  <path d="M77 190
+           C124 228 193 200 205 141
+           C218 75 158 21 95 40"
+        fill="none" stroke="url(#gold)" stroke-width="28" stroke-linecap="round"/>
+  <path d="M177 66
+           C130 28 61 56 49 115
+           C36 181 96 235 159 216"
+        fill="none" stroke="#d8e2e7" stroke-width="6" stroke-linecap="round" opacity="0.55"/>
+  <path d="M77 190
+           C124 228 193 200 205 141
+           C218 75 158 21 95 40"
+        fill="none" stroke="#ffdf75" stroke-width="5" stroke-linecap="round" opacity="0.75"/>
+
+  <circle cx="128" cy="128" r="35" fill="url(#blueCore)" filter="url(#softBlue)"/>
+  <circle cx="128" cy="128" r="50" fill="none" stroke="#00a3ff" stroke-width="3" opacity="0.45"/>
+</svg>

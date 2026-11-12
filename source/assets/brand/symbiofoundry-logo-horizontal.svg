@@ -1,0 +1,66 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 300" role="img" aria-labelledby="title desc">
+  <title id="title">SymbioFoundry horizontal logo</title>
+  <desc id="desc">SymbioFoundry wordmark with interlocking CC core icon in forge black, gold, steel, and electric blue.</desc>
+  <defs>
+    <linearGradient id="steel" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b0d0f"/>
+      <stop offset="0.45" stop-color="#4c5358"/>
+      <stop offset="1" stop-color="#141719"/>
+    </linearGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#ffdc66"/>
+      <stop offset="0.5" stop-color="#c79320"/>
+      <stop offset="1" stop-color="#7c5b12"/>
+    </linearGradient>
+    <radialGradient id="blueCore" cx="50%" cy="48%" r="55%">
+      <stop offset="0" stop-color="#ffffff"/>
+      <stop offset="0.18" stop-color="#8ff5ff"/>
+      <stop offset="0.45" stop-color="#00a3ff"/>
+      <stop offset="1" stop-color="#004d9a"/>
+    </radialGradient>
+    <filter id="softBlue" x="-60%" y="-60%" width="220%" height="220%">
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feMerge>
+        <feMergeNode in="blur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
+  </defs>
+
+  <g id="mark" transform="translate(42 42)">
+    <circle cx="108" cy="108" r="98" fill="none" stroke="#1d2226" stroke-width="9"/>
+    <circle cx="108" cy="108" r="82" fill="none" stroke="#c79320" stroke-width="5" opacity="0.9"/>
+
+    <path d="M151 54
+             C111 22 52 46 42 96
+             C31 153 82 199 136 183"
+          fill="none" stroke="url(#steel)" stroke-width="34" stroke-linecap="round"/>
+    <path d="M65 162
+             C105 194 164 170 174 120
+             C185 63 134 17 80 33"
+          fill="none" stroke="url(#gold)" stroke-width="24" stroke-linecap="round"/>
+    <path d="M151 54
+             C111 22 52 46 42 96
+             C31 153 82 199 136 183"
+          fill="none" stroke="#d8e2e7" stroke-width="5" stroke-linecap="round" opacity="0.55"/>
+    <path d="M65 162
+             C105 194 164 170 174 120
+             C185 63 134 17 80 33"
+          fill="none" stroke="#ffdf75" stroke-width="4" stroke-linecap="round" opacity="0.75"/>
+
+    <circle cx="108" cy="108" r="30" fill="url(#blueCore)" filter="url(#softBlue)"/>
+    <circle cx="108" cy="108" r="43" fill="none" stroke="#00a3ff" stroke-width="3" opacity="0.45"/>
+  </g>
+
+  <g id="wordmark" transform="translate(292 0)">
+    <line x1="0" y1="88" x2="670" y2="88" stroke="#c79320" stroke-width="4" stroke-linecap="round" opacity="0.82"/>
+    <line x1="0" y1="222" x2="670" y2="222" stroke="#00a3ff" stroke-width="3" stroke-linecap="round" opacity="0.65"/>
+    <text x="0" y="184"
+          font-family="Rajdhani, Montserrat, Arial Narrow, Arial, sans-serif"
+          font-size="92"
+          font-weight="800"
+          letter-spacing="1.5">
+      <tspan fill="#171a1d">Symbio</tspan><tspan fill="#c79320">Foundry</tspan>
+    </text>
+  </g>
+</svg>

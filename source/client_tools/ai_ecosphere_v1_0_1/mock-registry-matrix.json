@@ -1,0 +1,182 @@
+{
+  "providers": [
+    {
+      "id": "anthropic",
+      "name": "Anthropic",
+      "logo_path": "assets/logos/anthropic/anthropic_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "claude",
+          "provider_id": "anthropic",
+          "name": "Claude",
+          "logo_path": "assets/logos/anthropic/claude_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "wix",
+      "name": "Wix",
+      "logo_path": "assets/logos/base44/wix_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "base44",
+          "provider_id": "wix",
+          "name": "Base44",
+          "logo_path": "assets/logos/base44/base44_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "google",
+      "name": "Google",
+      "logo_path": "assets/logos/google/google_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "gemini",
+          "provider_id": "google",
+          "name": "Gemini",
+          "logo_path": "assets/logos/google/gemini_icon.svg",
+          "status": "Active"
+        },
+        {
+          "id": "notebooklm",
+          "provider_id": "google",
+          "name": "NotebookLM",
+          "logo_path": "assets/logos/google/notebooklm_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "midjourney",
+      "name": "Midjourney",
+      "logo_path": "assets/logos/midjourney/midjourney_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "midjourney",
+          "provider_id": "midjourney",
+          "name": "Midjourney",
+          "logo_path": "assets/logos/midjourney/midjourney_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral AI",
+      "logo_path": "assets/logos/mistral/mistral_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "vibe",
+          "provider_id": "mistral",
+          "name": "Vibe",
+          "logo_path": "assets/logos/mistral/vibe_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "logo_path": "assets/logos/openai/openai_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "chatgpt",
+          "provider_id": "openai",
+          "name": "ChatGPT",
+          "logo_path": "assets/logos/openai/chatgpt_icon.svg",
+          "status": "Active"
+        },
+        {
+          "id": "codex",
+          "provider_id": "openai",
+          "name": "Codex",
+          "logo_path": "assets/logos/openai/codex_icon.svg",
+          "status": "Active"
+        },
+        {
+          "id": "dall-e",
+          "provider_id": "openai",
+          "name": "DALL·E",
+          "logo_path": "assets/logos/openai/dall-e_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "perplexity",
+      "name": "Perplexity",
+      "logo_path": "assets/logos/perplexity/perplexity_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "perplexity",
+          "provider_id": "perplexity",
+          "name": "Perplexity",
+          "logo_path": "assets/logos/perplexity/perplexity_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "quora",
+      "name": "Quora",
+      "logo_path": "assets/logos/quora/quora_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "poe",
+          "provider_id": "quora",
+          "name": "Poe",
+          "logo_path": "assets/logos/quora/poe_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "symbiofoundry",
+      "name": "SymbioFoundry",
+      "logo_path": "assets/logos/symbiofoundry/symbiofoundry_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "comfyui",
+          "provider_id": "symbiofoundry",
+          "name": "ComfyUI",
+          "logo_path": "assets/logos/symbiofoundry/comfyui_icon.svg",
+          "status": "Active"
+        },
+        {
+          "id": "ollama",
+          "provider_id": "symbiofoundry",
+          "name": "Ollama",
+          "logo_path": "assets/logos/symbiofoundry/ollama_icon.svg",
+          "status": "Active"
+        }
+      ]
+    },
+    {
+      "id": "xai",
+      "name": "xAI",
+      "logo_path": "assets/logos/xai/xai_logo.svg",
+      "status": "Active",
+      "products": [
+        {
+          "id": "grok",
+          "provider_id": "xai",
+          "name": "Grok",
+          "logo_path": "assets/logos/xai/grok_icon.svg",
+          "status": "Active"
+        }
+      ]
+    }
+  ]
+}

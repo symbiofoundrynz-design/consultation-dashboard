@@ -1,0 +1,18 @@
+{
+  "archive": "consultation-dash-20260723-133753.zip",
+  "sha256": "84c524507ede68758cffc70ef866fb88f58c621d28eea884abbdb62f9b1065a8",
+  "excluded_entries_count": 29,
+  "excluded_categories": [
+    "historical export fixtures",
+    "external vendor logos replaced by generic SVGs",
+    "stale manifests",
+    "compiled python bytecode"
+  ],
+  "alterations": [
+    "public preview launcher",
+    "frontend demo paths",
+    "neutral external marks",
+    "sanitized backend local defaults",
+    "synthetic Graphs & Charts fixture"
+  ]
+}

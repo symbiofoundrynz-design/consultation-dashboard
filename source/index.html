@@ -1,0 +1,315 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Consultation Dash v1 Core</title>
+  <link rel="icon" href="assets/brand/symbiofoundry-icon.svg">
+    <link rel="stylesheet" href="styles.css?v=20260723-consultant-registry">
+</head>
+<body>
+  <header class="nav-stack">
+    <div class="top-nav">
+      <a class="brand" href="https://www.symbiofoundry.nz" target="_blank" rel="noreferrer">
+        <img src="assets/brand/symbiofoundry-icon.svg" alt="SymbioFoundry">
+        <span class="brand-copy">
+          <strong>SymbioFoundry</strong>
+          <small>Consultation Dash</small>
+        </span>
+      </a>
+      <nav class="main-tabs" aria-label="Main sections">
+        <button class="tab active" data-section="client">Client Consultation Room</button>
+        <button class="tab" data-section="lab">Test Lab</button>
+        <button class="tab" data-section="control">Data Control</button>
+      </nav>
+      <div class="db-indicator" id="dbIndicator">Local store connected</div>
+    </div>
+    <div class="sub-nav" id="subNav"></div>
+  </header>
+
+  <main>
+    <section class="splash" id="splash">
+      <div>
+        <p class="eyebrow">Private Consultation Dash</p>
+        <h1>Cdash v1 Core</h1>
+        <p>Current-state AI ecosystem capture, review, and comparison.</p>
+      </div>
+    </section>
+
+    <section class="view active" id="view-client" data-view="client">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Future dock</p>
+          <h2>Client Consultation Room</h2>
+        </div>
+        <span class="pill">Placeholder</span>
+      </div>
+      <div class="quiet-panel">
+        <p>The client questionnaire, scoring, recommendations, and exports stay out of v1 core. Future client tools will read current accepted product facts through a clean adapter.</p>
+      </div>
+    </section>
+
+    <section class="view" id="view-ai-ecosphere" data-view="ai-ecosphere">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Client Consultation Room</p>
+          <h2>AI EcoSphere</h2>
+        </div>
+        <a class="ghost tool-open-link" href="client_tools/ai_ecosphere_v1_0_1/index.html" target="_blank" rel="noreferrer">Open Full Tool</a>
+      </div>
+      <div class="embedded-tool">
+        <iframe class="tool-frame" src="client_tools/ai_ecosphere_v1_0_1/index.html" title="AI EcoSphere"></iframe>
+      </div>
+    </section>
+
+    <section class="view" id="view-graphs-charts" data-view="graphs-charts">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Client Consultation Room</p>
+          <h2>Graphs &amp; Charts</h2>
+        </div>
+        <a class="ghost tool-open-link" href="client_tools/ccr_visual_workbench/index.html" target="_blank" rel="noreferrer">Open Full Tool</a>
+      </div>
+      <div class="notice" id="graphsChartsNotice">Loading current Cdash data into Graphs &amp; Charts.</div>
+      <div class="embedded-tool ccr-visual-tool">
+        <iframe class="tool-frame" id="graphsChartsFrame" src="client_tools/ccr_visual_workbench/index.html" title="Graphs &amp; Charts"></iframe>
+      </div>
+    </section>
+
+    <section class="view" id="view-primer" data-view="primer">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Test Lab</p>
+          <h2>Primer Library</h2>
+        </div>
+        <button class="primary" id="addPrimerBtn">Add Primer</button>
+      </div>
+      <div class="list-shell" id="primerList"></div>
+    </section>
+
+    <section class="view" id="view-recorder" data-view="recorder">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Test Lab</p>
+          <h2>Test Recorder</h2>
+        </div>
+        <span class="pill" id="recorderCount">0 entries</span>
+      </div>
+      <div class="two-col">
+        <form class="tool-panel" id="runForm">
+          <label>Date run<input type="date" id="runDate"></label>
+          <label>Primer title used<select id="runPrimer"></select></label>
+          <div>
+            <div class="field-label">Systems tested</div>
+            <div class="check-grid" id="runProducts"></div>
+          </div>
+          <button class="primary" type="submit">Save Entry</button>
+        </form>
+        <div class="tool-panel">
+          <h3>Run Diary</h3>
+          <div id="runDiary" class="compact-list"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-parser" data-view="parser">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Test Lab</p>
+          <h2>Data Parser</h2>
+        </div>
+        <button class="ghost" id="loadSamplesBtn">Try Workspace Samples</button>
+      </div>
+      <div class="parser-grid">
+        <div class="tool-panel">
+          <label>Product<select id="parserProduct"></select></label>
+          <label>Snapshot date<input type="date" id="snapshotDate"></label>
+          <label class="file-line">Upload Markdown<input type="file" id="snapshotFile" accept=".md,.txt"></label>
+          <label>Paste Markdown<textarea id="snapshotText" spellcheck="false"></textarea></label>
+          <div class="button-row">
+            <button class="primary" id="parseBtn" type="button">Parse</button>
+            <button class="ghost" id="acceptBtn" type="button" disabled>Accept Snapshot</button>
+          </div>
+          <div class="notice" id="parseNotice">Paste or upload one primer result to begin.</div>
+        </div>
+        <div class="tool-panel review-panel">
+          <h3>Priority Facts</h3>
+          <div id="priorityFacts" class="fact-review"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-registry" data-view="registry">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Data Control</p>
+          <h2>Registry</h2>
+        </div>
+        <button class="primary" id="addProviderBtn">Add Provider</button>
+      </div>
+      <div class="registry-grid" id="registryList"></div>
+    </section>
+
+    <section class="view" id="view-client-registry" data-view="client-registry">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Data Control</p>
+          <h2>Client Registry</h2>
+        </div>
+        <span class="pill" id="clientRegistryCount">0 active / 0 total</span>
+      </div>
+      <div class="client-registry-layout">
+        <form class="tool-panel client-registry-form" id="clientRegistryForm">
+          <h3>New Client</h3>
+          <label>Display name<input class="client-display-name" autocomplete="off" required></label>
+          <div class="edit-grid">
+            <label>Client type
+              <select class="client-type">
+                <option value="individual">Individual</option>
+                <option value="sole_trader">Sole trader</option>
+                <option value="business">Business</option>
+                <option value="organisation">Organisation</option>
+                <option value="unknown" selected>Unknown</option>
+              </select>
+            </label>
+            <label>Status
+              <select class="client-status">
+                <option value="prospect" selected>Prospect</option>
+                <option value="active">Active</option>
+                <option value="paused">Paused</option>
+                <option value="complete">Complete</option>
+                <option value="archived">Archived</option>
+              </select>
+            </label>
+          </div>
+          <label>Contact name<input class="client-contact-name" autocomplete="off"></label>
+          <label>Email<input class="client-email" type="email" autocomplete="off"></label>
+          <label>Phone<input class="client-phone" autocomplete="off"></label>
+          <label>Business name<input class="client-business-name" autocomplete="off"></label>
+          <label>Website<input class="client-website" autocomplete="off"></label>
+          <label>Notes<textarea class="client-notes"></textarea></label>
+          <button class="primary" type="submit">Create Client Ref</button>
+        </form>
+        <div class="client-registry-main">
+          <div class="notice" id="clientRegistryNotice">Client refs use CL-YYYYMMDD-0001 format.</div>
+          <div class="client-list" id="clientRegistryList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-consultant-registry" data-view="consultant-registry">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Data Control</p>
+          <h2>Consultant Registry</h2>
+        </div>
+        <span class="pill" id="consultantRegistryCount">0 active / 0 total</span>
+      </div>
+      <div class="client-registry-layout">
+        <form class="tool-panel client-registry-form" id="consultantRegistryForm">
+          <h3>New Consultant</h3>
+          <label>Display name<input class="consultant-display-name" autocomplete="off" required></label>
+          <div class="edit-grid">
+            <label>Role<input class="consultant-role" autocomplete="off"></label>
+            <label>Status
+              <select class="consultant-status">
+                <option value="active" selected>Active</option>
+                <option value="paused">Paused</option>
+                <option value="retired">Retired</option>
+                <option value="archived">Archived</option>
+              </select>
+            </label>
+          </div>
+          <label>Email<input class="consultant-email" type="email" autocomplete="off"></label>
+          <label>Phone<input class="consultant-phone" autocomplete="off"></label>
+          <label>Organisation<input class="consultant-organisation" autocomplete="off"></label>
+          <label>Website<input class="consultant-website" autocomplete="off"></label>
+          <label>Notes<textarea class="consultant-notes"></textarea></label>
+          <button class="primary" type="submit">Create Consultant Ref</button>
+        </form>
+        <div class="client-registry-main">
+          <div class="notice" id="consultantRegistryNotice">Consultant refs use CONS-YYYYMMDD-0001 format.</div>
+          <div class="client-list" id="consultantRegistryList"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="view" id="view-records" data-view="records">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Data Control</p>
+          <h2>Records</h2>
+        </div>
+        <span class="pill" id="recordTotals">0 records</span>
+      </div>
+      <div class="record-actions">
+        <button class="primary" id="serverBackupBtn">Backup Now</button>
+        <button class="primary" id="exportDbBtn">Export Backup JSON</button>
+        <label class="import-btn">Import Backup JSON<input type="file" id="importDbFile" accept=".json"></label>
+        <button class="danger" id="resetDbBtn">Reset Local Store</button>
+      </div>
+      <div class="notice" id="backupNotice">Server backups are stored on the configured host.</div>
+      <pre class="schema-box" id="schemaBox"></pre>
+    </section>
+
+    <section class="view" id="view-matrix" data-view="matrix">
+      <div class="page-head">
+        <div>
+          <p class="eyebrow">Current State</p>
+          <h2>Matrix</h2>
+        </div>
+        <div class="matrix-controls">
+          <label>View<select id="matrixMode"><option value="capabilities">Capabilities</option><option value="pricing">Pricing</option></select></label>
+          <label>Layout<select id="matrixLayout"><option value="standard">Standard</option><option value="wide">Wide</option><option value="full">Full</option></select></label>
+          <label><input type="checkbox" id="showUnknown" checked> UNKNOWN</label>
+          <label><input type="checkbox" id="showCheck" checked> Check flags</label>
+          <input type="search" id="matrixSearch" placeholder="Search facts">
+        </div>
+      </div>
+      <details class="matrix-config" id="matrixSavedViewsConfig">
+        <summary>Saved Views <span class="pill" id="matrixSavedViewsCount">0 saved</span></summary>
+        <div class="matrix-config-actions">
+          <input type="text" id="matrixSaveViewName" placeholder="View name">
+          <button class="ghost" type="button" id="matrixSaveView">Save Current View</button>
+        </div>
+        <div class="matrix-saved-view-list" id="matrixSavedViewList"></div>
+      </details>
+      <details class="matrix-config" id="matrixConfig">
+        <summary>Matrix Rows <span class="pill" id="matrixConfigCount">0 shown</span></summary>
+        <div class="matrix-config-actions">
+          <button class="ghost" type="button" id="matrixShowAll">Show All</button>
+          <button class="ghost" type="button" id="matrixHideAll">Hide All</button>
+          <button class="ghost" type="button" id="matrixEssentials">Essentials</button>
+          <button class="ghost" type="button" id="matrixResetRows">Reset</button>
+        </div>
+        <div class="matrix-preset-actions" id="matrixPricingPresets" hidden>
+          <button class="ghost" type="button" data-pricing-preset="essentials">Pricing Essentials</button>
+          <button class="ghost" type="button" data-pricing-preset="monthly">Monthly Plans</button>
+          <button class="ghost" type="button" data-pricing-preset="team">Team / Business</button>
+          <button class="ghost" type="button" data-pricing-preset="api">API / Usage</button>
+          <button class="ghost" type="button" data-pricing-preset="limits">Limits / Credits</button>
+        </div>
+        <div class="matrix-config-list" id="matrixConfigList"></div>
+      </details>
+      <details class="matrix-config" id="matrixProductConfig">
+        <summary>Matrix Products <span class="pill" id="matrixProductConfigCount">0 shown</span></summary>
+        <div class="matrix-config-actions">
+          <button class="ghost" type="button" id="matrixProductsShowAll">Show All</button>
+          <button class="ghost" type="button" id="matrixProductsHideAll">Hide All</button>
+          <button class="ghost" type="button" id="matrixProductsReset">Reset</button>
+        </div>
+        <div class="matrix-category-actions" id="matrixCategoryActions"></div>
+        <div class="matrix-config-list" id="matrixProductConfigList"></div>
+      </details>
+      <div class="matrix-wrap" id="matrixWrap"></div>
+      <aside class="detail-drawer" id="detailDrawer" hidden></aside>
+    </section>
+  </main>
+
+  <template id="providerTemplate">
+    <article class="provider-card"></article>
+  </template>
+
+    <script src="app.js?v=20260723-consultant-registry"></script>
+</body>
+</html>

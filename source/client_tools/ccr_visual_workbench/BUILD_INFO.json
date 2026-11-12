@@ -1,0 +1,13 @@
+{
+  "display_name": "Graphs & Charts",
+  "technical_folder": "ccr_visual_workbench",
+  "version": "1.0.1",
+  "build_date": "2026-07-18",
+  "classification": "Internal standalone Cdash integration component",
+  "renderer": "Apache ECharts 6.1.0, locally bundled",
+  "runtime": "Static HTML, CSS and JavaScript",
+  "live_database_connection": false,
+  "external_runtime_dependencies": false,
+  "sample_fixture": "Sanitised eight-product representative export",
+  "hotfix": "Fixes starter preset application so dataset, measure, chart type and title refresh together."
+}
