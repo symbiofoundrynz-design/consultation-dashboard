@@ -19,7 +19,7 @@
 
 ## Packaged static preview
 
-The originating lane recorded a conditional pass on 11 November 2026. On MAKERSPACE the dashboard loaded in a loopback Python preview, navigation worked, and the app used local browser storage when static API requests returned 404. The standalone AI EcoSphere displayed 10 provider nodes and 14 product nodes. In the standalone chart workbench the reviewer selected **Use Sample Data** and built **Products by category** from eight synthetic products.
+The originating lane recorded a conditional pass on 11 November 2026. In an isolated Windows test environment the dashboard loaded in a loopback Python preview, navigation worked, and the app used local browser storage when static API requests returned 404. The standalone AI EcoSphere displayed 10 provider nodes and 14 product nodes. In the standalone chart workbench the reviewer selected **Use Sample Data** and built **Products by category** from eight synthetic products.
 
 ## What remains
 

@@ -69,4 +69,4 @@ See [Architecture](docs/ARCHITECTURE.md), [Status](docs/DEVELOPMENT_STATUS.md), 
 
 Systems design, modular requirements analysis, integration, troubleshooting, test planning, deployment verification and AI-assisted software development. The source was built with AI assistance under developer direction and review.
 
-**Private source review.** DeV approved this version for a private repository. Public release requires a separate decision. The original project retains its existing copyright. The bundled ECharts distribution has its own [third-party notices](source/client_tools/ccr_visual_workbench/THIRD_PARTY_NOTICES.md).
+**Portfolio source review.** This repository documents implemented engineering work and known limitations. Repository visibility remains private until a separate public-release approval and final verification. The original project retains its existing copyright. The bundled ECharts distribution has its own [third-party notices](source/client_tools/ccr_visual_workbench/THIRD_PARTY_NOTICES.md).
